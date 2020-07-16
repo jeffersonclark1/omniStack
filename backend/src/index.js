@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
+const cors = require('cors');
 
 /**
  * GET : Buscar/listar uma informacao do back-end
