@@ -1,0 +1,10 @@
+{
+  "sqltools.connections": [
+    {
+      "database": "/home/noise/omnistack/backend/src/db.sqlite",
+      "driver": "SQLite",
+      "name": "Omni",
+      "previewLimit": 50
+    }
+  ]
+}

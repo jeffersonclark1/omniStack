@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './styles.css';
 import logoImg from '../../assets/logo.svg';
 import { FiArrowLeft } from 'react-icons/fi';
@@ -13,8 +13,23 @@ export default function Register(){
   const [city, setCity] = useState('');
   const [uf, setUf] = useState('');
 
-  function handleRegister(e){
+  const history = useHistory();
+
+  async function handleRegister(e){
     e.preventDefault();
+
+    const data = {name,email,whatsapp,city,uf};
+  
+    try{
+      const response = await api.post('ongs', data);
+
+      alert(`Seu id de acesso, ${response.data.id}`);
+
+      history.push('/');
+    }catch{
+      alert('Erro ao cadastrar');
+    }    
+
   }
 
   return (
@@ -32,12 +47,34 @@ export default function Register(){
             </Link>
         </section>
         <form onSubmit={handleRegister}>
-          <input placeholder="Nome da Ong"></input>
-          <input type="email" placeholder="Email"></input>
-          <input placeholder="Whatsapp"></input>
+          <input 
+            placeholder="Nome da Ong" 
+            value={name}
+            onChange={e => setName(e.target.value)}
+          ></input>
+          <input 
+            type="email" 
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          ></input>
+          <input 
+            placeholder="Whatsapp"
+            value={whatsapp}
+            onChange={e => setWhatsapp(e.target.value)}
+          ></input>
           <div className="input-group">
-            <input placeholder="Cidade"></input>
-            <input placeholder="UF" style={{ width: 80 }}></input>
+            <input 
+              placeholder="Cidade"
+              value={city}
+              onChange={e => setCity(e.target.value)}
+            ></input>
+            <input 
+              placeholder="UF" 
+              style={{ width: 80 }}
+              value={uf}
+              onChange={e => setUf(e.target.value)}
+            ></input>
           </div>
           <button className="button" type="submit">Registar</button>
         </form>
