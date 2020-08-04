@@ -1,2 +1,10 @@
 {
+  "sqltools.connections": [
+    {
+      "database": "${workspaceFolder:omnistack}/backend/src/db.sqlite",
+      "driver": "SQLite",
+      "name": "Omnistack",
+      "previewLimit": 50
+    }
+  ]
 }
